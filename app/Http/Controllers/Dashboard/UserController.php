@@ -34,7 +34,7 @@ class UserController extends Controller
         // To get the users that have the admin role only use (whereRoleIs) method
         //     $users = User::whereRoleIs('admin')->get();
         // }
-        
+
 
         $users = User::whereRoleIs('admin')->where(function ($q) use ($request) {
             return $q->when($request->search, function ($q) use ($request) {
@@ -125,6 +125,7 @@ class UserController extends Controller
 
         if ($request->image) {
             if ($user->image != 'profile.png') {
+                Storage::disk('public_uploads')->delete('/user_images/' . $user->image);
             }
             Image::make($request->image)->resize(300, null, function ($constraint) {
                 $constraint->aspectRatio();

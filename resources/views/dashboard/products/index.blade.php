@@ -37,7 +37,7 @@
                                 <select name="category_id" class="form-control">
                                     <option value="">@lang('site.all_categories')</option>
                                     @foreach ($categories as $category)
-                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                        <option value="{{ $category->id }}" {{ request()->category_id == $category->id ? 'selected' : ''}}>{{ $category->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -73,6 +73,7 @@
                                     <th>#</th>
                                     <th>@lang('site.name')</th>
                                     <th>@lang('site.description')</th>
+                                    <th>@lang('site.category')</th>
                                     <th>@lang('site.image')</th>
                                     <th>@lang('site.purchase_price')</th>
                                     <th>@lang('site.sale_price')</th>
@@ -88,8 +89,8 @@
                                         <td>{{ $index + 1 }}</td>
                                         <td>{{ $product->name }}</td>
                                         <td>{!! $product->description !!}</td>
-                                        <td><img src="{{ $product->image_path }}" alt="" style="width: 100px"
-                                                class="img-thumbnail"></td>
+                                        <td>{{ $product->category->name }}</td>
+                                        <td><img src="{{ $product->image_path }}" alt="" style="width: 100px" class="img-thumbnail"></td>
                                         <td>{{ $product->purchase_price }}</td>
                                         <td>{{ $product->sale_price }}</td>
                                         <td>{{ $product->profit_percent }} %</td>
