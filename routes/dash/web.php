@@ -2,6 +2,7 @@
 
 // use App\Http\Controllers\dashboard\CategoryController;
 
+use App\Http\Controllers\Dashboard\Client\OrderController;
 use App\Http\Controllers\Dashboard\ClientController;
 use App\Http\Controllers\Dashboard\DashboardController;
 
@@ -27,6 +28,7 @@ Route::group(
             Route::resource('products', ProductController::class);
 
             Route::resource('clients', ClientController::class);
+            Route::resource('clients.orders', OrderController::class);
         });
     }
 );

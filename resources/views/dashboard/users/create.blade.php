@@ -1,7 +1,6 @@
 @extends('layouts.dashboard.app')
 
 @section('content')
-
     <div class="content-wrapper">
 
         <section class="content-header">
@@ -34,7 +33,7 @@
 
                         <div class="form-group">
                             <label>@lang('site.first_name')</label>
-                            <input type="text" name="first_name" class="form-control" value="{{ old('first_name') }}" >
+                            <input type="text" name="first_name" class="form-control" value="{{ old('first_name') }}">
                         </div>
 
                         <div class="form-group">
@@ -53,9 +52,10 @@
                         </div>
 
                         <div class="form-group">
-                            <img src="{{ asset('uploads/user_images/profile.png') }}" style="width: 100px" class="img-thumbnail image-preview" alt="">
+                            <img src="{{ asset('uploads/user_images/profile.png') }}" style="width: 100px"
+                                class="img-thumbnail image-preview" alt="">
                         </div>
-                        
+
                         {{-- <div class="form-group">
                             <label>@lang('site.image')</label>
                             <input type="file" name="image" class="form-control image">
@@ -80,38 +80,41 @@
                             <div class="nav-tabs-custom">
 
                                 @php
-                                    $models = ['users', 'categories', 'products', 'clients', 'orders'];
+                                    // $models = ['users', 'categories', 'products', 'clients', 'orders'];
+                                    $models_config = collect(config('laratrust_seeder.roles_structure.super_admin'));
+                                    $models = array_keys($models_config->toArray());
                                     $maps = ['create', 'read', 'update', 'delete'];
                                 @endphp
 
                                 <ul class="nav nav-tabs">
-                                    @foreach ($models as $index=>$model)
-                                        <li class="{{ $index == 0 ? 'active' : '' }}"><a href="#{{ $model }}" data-toggle="tab">@lang('site.' . $model)</a></li>
+                                    @foreach ($models as $index => $model)
+                                        <li class="{{ $index == 0 ? 'active' : '' }}"><a href="#{{ $model }}"
+                                                data-toggle="tab">@lang('site.' . $model)</a></li>
                                     @endforeach
                                 </ul>
 
                                 <div class="tab-content">
 
-                                    @foreach ($models as $index=>$model)
-
+                                    @foreach ($models as $index => $model)
                                         <div class="tab-pane {{ $index == 0 ? 'active' : '' }}" id="{{ $model }}">
 
                                             @foreach ($maps as $map)
-                                                <label><input type="checkbox" name="permissions[]" value="{{ $map . '_' . $model }}"> @lang('site.' . $map)</label>
+                                                <label><input type="checkbox" name="permissions[]"
+                                                        value="{{ $map . '_' . $model }}"> @lang('site.' . $map)</label>
                                             @endforeach
 
                                         </div>
-
                                     @endforeach
 
                                 </div><!-- end of tab content -->
-                                
+
                             </div><!-- end of nav tabs -->
-                            
+
                         </div>
 
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary"><i class="fa fa-plus"></i> @lang('site.add')</button>
+                            <button type="submit" class="btn btn-primary"><i class="fa fa-plus"></i>
+                                @lang('site.add')</button>
                         </div>
 
                     </form><!-- end of form -->
@@ -123,5 +126,4 @@
         </section><!-- end of content -->
 
     </div><!-- end of content wrapper -->
-
 @endsection
