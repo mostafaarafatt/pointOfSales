@@ -117,6 +117,7 @@
 
 $(document).ready(function () {
 
+    //add product btn
     $('.add-product-btn').on('click', function (e) {
         e.preventDefault();
 
@@ -139,11 +140,12 @@ $(document).ready(function () {
         calculateTotal();
     });
 
-
+    //disabled btn
     $('body').on('click', '.disabled', function (e) {
         e.preventDefault();
     });
 
+    //remove product btn
     $('body').on('click', '.remove-product-btn', function (e) {
         e.preventDefault();
         var id = $(this).data('id');
@@ -154,6 +156,7 @@ $(document).ready(function () {
         calculateTotal();
     });
 
+    //change product quantity
     $('body').on('keyup change', '.product-quantity', function () {
         
         var quantity = $(this).val();
@@ -167,6 +170,7 @@ $(document).ready(function () {
 
 });
 
+//calculateF
 function calculateTotal() {
     var price = 0;
 

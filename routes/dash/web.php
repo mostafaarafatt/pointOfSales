@@ -7,6 +7,7 @@ use App\Http\Controllers\Dashboard\ClientController;
 use App\Http\Controllers\Dashboard\DashboardController;
 
 use App\Http\Controllers\Dashboard\UserController;
+use App\Http\Controllers\Dashboard\WelcomeController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -19,7 +20,7 @@ Route::group(
     ],
     function () {
         Route::prefix('dashboard')->name('dashboard.')->middleware(['auth'])->group(function () {
-            Route::get('/index', [DashboardController::class, 'index'])->name('index');
+            Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
 
             Route::resource('users', UserController::class);
 
