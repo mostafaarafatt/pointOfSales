@@ -87,7 +87,7 @@
     {{-- <!-- iCheck --> --}}
     <link rel="stylesheet" href="{{ asset('dashboard_files/plugins/icheck/all.css') }}">
 
-    
+
 
     {{-- html in  ie --}}
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -304,8 +304,8 @@
         }); //end of ready
     </script>
 
-    
-    
+
+
 
     <script>
         CKEDITOR.config.language = "{{ app()->getLocale() }}";
@@ -334,12 +334,20 @@
     <script src="{{ asset('dashboard_files/js/jquery.min.js') }}"></script>
 
     {{-- morris --}}
-    <script src="{{ asset('dashboard_files/plugins/noty/noty.min.js') }}"></script>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+    <script src="{{ asset('dashboard_files/plugins/morris/morris.min.js') }}"></script>
 
     {{-- custom js --}}
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <script src="{{ asset('dashboard_files/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('dashboard_files/js/custom/image_preview.js') }}"></script>
+    <script src="{{ asset('dashboard_files/js/custom/order.js') }}"></script>
+
+    {{-- morris --}}
+    {{-- <script src="{{ asset('dashboard_files/plugins/morris/morris.min.js') }}"></script>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script> --}}
+
+    {{-- custom js --}}
+    {{-- <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <script src="{{ asset('dashboard_files/js/bootstrap.min.js') }}"></script> --}}
 
     <script src="{{ asset('dashboard_files/js/custom/order.js') }}"></script>
 
