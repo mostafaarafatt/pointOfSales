@@ -52,11 +52,12 @@ class User extends Authenticatable
 
     public function getFullNameAttribute()
     {
-        return $this->first_name . ' '. $this->last_name ;
+        return $this->first_name . ' ' . $this->last_name;
     }
 
     public function getImagePathAttribute()
     {
-        return asset('uploads/user_images/'.$this->image);
+        return asset('uploads/user_images/' . $this->image);
     }
+    
 }

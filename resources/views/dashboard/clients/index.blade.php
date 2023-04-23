@@ -75,7 +75,8 @@
                                     <tr>
                                         <td>{{ $index + 1 }}</td>
                                         <td>{{ $client->name }}</td>
-                                        <td>{{ implode('-', $client->phone) }}</td>
+                                        <td>{{ is_array($client->phone) ? implode('-', $client->phone) : $client->phone }}
+                                        </td>
                                         <td>{{ $client->address }}</td>
                                         <td>
                                             @if (auth()->user()->hasPermission('create_orders'))
@@ -83,7 +84,8 @@
                                                     class="btn btn-info btn-sm"><i class="fa fa-edit"></i>
                                                     @lang('site.add_order')</a>
                                             @else
-                                                <a href="#" class="btn btn-info btn-sm disabled"><i class="fa fa-edit"></i>
+                                                <a href="#" class="btn btn-info btn-sm disabled"><i
+                                                        class="fa fa-edit"></i>
                                                     @lang('site.add_order')</a>
                                             @endif
                                         </td>

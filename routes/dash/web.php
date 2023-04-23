@@ -5,7 +5,7 @@
 use App\Http\Controllers\Dashboard\Client\OrderController;
 use App\Http\Controllers\Dashboard\ClientController;
 use App\Http\Controllers\Dashboard\DashboardController;
-
+use App\Http\Controllers\Dashboard\OrderController as DashboardOrderController;
 use App\Http\Controllers\Dashboard\UserController;
 use App\Http\Controllers\Dashboard\WelcomeController;
 use Illuminate\Support\Facades\Route;
@@ -30,6 +30,9 @@ Route::group(
 
             Route::resource('clients', ClientController::class);
             Route::resource('clients.orders', OrderController::class);
+
+            Route::resource('orders',DashboardOrderController::class);
+            Route::get('/orders/{order}/products',[DashboardOrderController::class,'products'])->name('orders.products');
         });
     }
 );

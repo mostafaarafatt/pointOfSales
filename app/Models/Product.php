@@ -30,6 +30,11 @@ class Product extends Model implements TranslatableContract
     {
         $profit = $this->sale_price - $this->purchase_price;
         $profit_persent = $profit * 100 / $this->purchase_price;
-        return number_format($profit_persent,2);
+        return number_format($profit_persent, 2);
+    }
+
+    public function orders()
+    {
+        return $this->belongsToMany(Order::class,'product_order');
     }
 }

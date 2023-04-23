@@ -139,8 +139,8 @@
 
                     </div><!-- end of box -->
 
-                    {{-- @if ($client->orders->count() > 0) --}}
-                    {{-- <div class="box box-primary">
+                    @if ($client->orders->count() > 0)
+                        <div class="box box-primary">
 
                             <div class="box-header">
 
@@ -188,8 +188,8 @@
 
                             </div><!-- end of box body -->
 
-                        </div><!-- end of box --> --}}
-                    {{-- @endif --}}
+                        </div><!-- end of box -->
+                    @endif
 
                 </div><!-- end of col -->
 

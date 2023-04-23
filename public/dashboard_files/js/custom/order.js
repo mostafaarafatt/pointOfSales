@@ -127,10 +127,12 @@ $(document).ready(function () {
 
         $(this).removeClass('btn-success').addClass('btn-default disabled');
 
+        // <input type="hidden" name="product_ids[]" value=${id}></input>
+
         var html = `
             <tr>
                 <td>${name}</td>
-                <td><input type="number" name="quanities[]" data-price="${price}" class="form-control input-sm product-quantity" min="1" value="1"></td>
+                <td><input type="number" name="products[${id}][quantity]" data-price="${price}" class="form-control input-sm product-quantity" min="1" value="1"></td>
                 <td class="product-price">${price}</td>
                 <td><button class="btn btn-danger btn-sm remove-product-btn" data-id="${id}"><span class="fa fa-trash"></span></button></td>
             </tr>
@@ -158,15 +160,41 @@ $(document).ready(function () {
 
     //change product quantity
     $('body').on('keyup change', '.product-quantity', function () {
-        
+
         var quantity = $(this).val();
-        var price = $(this).data('price');
-        $(this).closest('tr').find('.product-price').html(quantity * price);
+        var unitPrice = $(this).data('price');
+        $(this).closest('tr').find('.product-price').html(quantity * unitPrice);
 
         calculateTotal();
 
     });
 
+    //show order products
+    $('.order-products').on('click', function (e) {
+        e.preventDefault();
+
+        var url = $(this).data('url');
+        var method = $(this).data('method');
+
+        $('#loading').css('display', 'flex');
+
+        $.ajax({
+            type: method,
+            url: url,
+            success: function (response) {
+
+                $('#loading').css('display', 'none');
+                $('#order-product-list').empty();
+                $('#order-product-list').append(response);
+
+            }
+        });
+    });
+
+    //print order products
+    $(document).on('click', '.print-btn', function () {
+        $('#print-area').printThis();
+    })
 
 });
 
@@ -177,8 +205,20 @@ function calculateTotal() {
     //.each بتعدى على كل واحده فيهم
     $('.order-list .product-price').each(function (index) {
         //$(this).html() بترجع ك string
-        price += parseInt($(this).html());
+        price += parseFloat($(this).html().replace(/,/g, ''));
+        // price += parseInt($(this).html());
     });
 
     $('.total-price').html(price);
+
+    //check if price > 0
+    if (price > 0) {
+
+        $('#add-order-form-btn').removeClass('disabled')
+
+    } else {
+
+        $('#add-order-form-btn').addClass('disabled')
+
+    }//end of else
 }
